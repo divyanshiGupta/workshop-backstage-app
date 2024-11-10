@@ -1,5 +1,9 @@
 import React from 'react';
-import { Progress, ResponseErrorPanel } from '@backstage/core-components';
+import {
+  EmptyState,
+  Progress,
+  ResponseErrorPanel,
+} from '@backstage/core-components';
 import useAsync from 'react-use/lib/useAsync';
 
 import {
@@ -12,6 +16,8 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { useState } from 'react';
+import { usePermission } from '@backstage/plugin-permission-react';
+import { todoListViewPermission } from '@internal/backstage-plugin-todo-list-common';
 
 // export const exampleUsers = {
 //   results: [
@@ -286,6 +292,10 @@ export const TodoListFetchComponent = () => {
   const [editedId] = useState(null);
   const classes = useStyles();
 
+  const todoListViewPermissionResult = usePermission({
+    permission: todoListViewPermission,
+  });
+
   const { value, loading, error } = useAsync(async (): Promise<any> => {
     // Would use fetch in a real world example
     // return exampleUsers.results;
@@ -312,6 +322,15 @@ export const TodoListFetchComponent = () => {
     const newTodos = todos.filter((todo: any) => todo.id !== id);
     setTodos(newTodos);
   };
+
+  if (!todoListViewPermissionResult.allowed)
+    return (
+      <EmptyState
+        title="Permission required"
+        description="To view Todo list, contact your administrator to give you the todolist.view.read permission"
+        missing="data"
+      />
+    );
 
   if (loading) {
     return <Progress />;
