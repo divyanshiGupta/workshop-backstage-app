@@ -67,6 +67,14 @@ auth:
   providers:
     # See https://backstage.io/docs/auth/guest/provider
     guest: {}
+    github:
+      development:
+        clientId: <client-id>
+        clientSecret: <client-secret>
+        signIn:
+          resolvers:
+            # typically you would pick one of these
+            - resolver: usernameMatchingUserEntityName
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
@@ -94,6 +102,18 @@ catalog:
       rules:
         - allow: [User, Group]
 
+     # Uncomment these lines to add an example org
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
+      rules:
+        - allow: [User, Group]
+
+    - type: url
+      target: https://github.com/temp-demo-organisation/nationalparks-py/blob/master/catalog-info.yaml
+      rules:
+        - allow: [User, Group]
+
+
     ## Uncomment these lines to add more example data
     # - type: url
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
@@ -109,5 +129,15 @@ kubernetes:
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
 permission:
-  # setting this to `false` will disable permissions
   enabled: true
+  rbac:
+    pluginsWithPermission:
+      - catalog
+      - permission
+      - scaffolder
+      - todo-list
+    admin:
+      superUsers:
+        - name: user:default/divyanshigupta
+    policies-csv-file: /Users/divgupta/code/workshop-backstage-app/packages/backend/model/rbac-policy.csv
+    policyFileReload: true

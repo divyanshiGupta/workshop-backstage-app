@@ -28,6 +28,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
 import GroupIcon from '@material-ui/icons/People';
 import ListIcon from '@material-ui/icons/List';
+import { Administration } from '@janus-idp/backstage-plugin-rbac';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -85,6 +86,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       </SidebarGroup>
       <SidebarSpace />
       <SidebarDivider />
+      <Administration />
       <SidebarGroup
         label="Settings"
         icon={<UserSettingsSignInAvatar />}

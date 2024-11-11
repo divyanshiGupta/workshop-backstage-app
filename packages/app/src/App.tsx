@@ -37,6 +37,8 @@ import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { TodoListPage } from '@internal/backstage-plugin-todo-list';
+import { githubAuthApiRef } from '@backstage/core-plugin-api';
+import { RbacPage } from '@janus-idp/backstage-plugin-rbac';
 
 const app = createApp({
   apis,
@@ -58,7 +60,21 @@ const app = createApp({
     });
   },
   components: {
-    SignInPage: props => <SignInPage {...props} auto providers={['guest']} />,
+    SignInPage: props => (
+      <SignInPage
+        {...props}
+        auto
+        providers={[
+          {
+            id: 'github-auth-provider',
+            title: 'GitHub',
+            message: 'Sign in using GitHub',
+            apiRef: githubAuthApiRef,
+          },
+          'guest',
+        ]}
+      />
+    ),
   },
 });
 
@@ -97,6 +113,7 @@ const routes = (
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/todo-list" element={<TodoListPage />} />
+    <Route path="/rbac" element={<RbacPage />} />;
   </FlatRoutes>
 );
 
