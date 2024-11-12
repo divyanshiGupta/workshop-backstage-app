@@ -7,6 +7,10 @@ export const todoListViewPermission = createPermission({
   },
 });
 
+export const todoListDeletePermission = createPermission({
+  name: 'todo.list.delete',
+  attributes: { action: 'delete' },
+});
 /**
  * List of all permissions on permission polices.
  */
