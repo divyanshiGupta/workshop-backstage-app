@@ -40,6 +40,8 @@ yarn dev
 
 Create a common plugin using - `yarn new`, and selecting `plugin-common`
 
+Note: While adding name for plugin avoid adding common as it is automatically appended to the plugin name upon creation
+
 Add `@backstage/plugin-permission-common` dependency in your common plugins `package.json`
 `yarn --cwd plugins/<your-plugin> add @backstage/plugin-permission-common`
 
@@ -64,6 +66,9 @@ Add `@backstage/plugin-permission-react` dependency in your common plugins `pack
 Add the following in you component to hide the component if the access is not allowed
 
 ```
+import { usePermission } from '@backstage/plugin-permission-react';
+import { yourPluginViewPermission } from '@internal/backstage-plugin-your-plugin-common';
+
 const yourPluginViewPermissionResult = usePermission({
   permission: yourPluginViewPermission,
 });
