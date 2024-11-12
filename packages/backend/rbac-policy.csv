@@ -1,2 +1,6 @@
+p, role:default/guestuser, todo.list.delete, delete, deny
 p, role:default/dev, todolist.view.read, read, allow
+
+
+g, user:development/guest, role:default/guestuser
 g, user:development/guest, role:default/dev
