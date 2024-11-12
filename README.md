@@ -61,7 +61,7 @@ export const yourPluginViewPermission = createPermission({
 ## Use permission in frontend plugin
 
 Add `@backstage/plugin-permission-react` dependency in your common plugins `package.json`
-`yarn --cwd plugins/<your-plugin> add @backstage/plugin-permission-common`
+`yarn --cwd plugins/<your-plugin> add @backstage/plugin-permission-react`
 
 Add the following in your component to hide the component if the access is not allowed
 
