@@ -38,15 +38,15 @@ backend.add(import('@backstage/plugin-catalog-backend-module-logs'));
 //   import('@backstage/plugin-permission-backend-module-allow-all-policy'),
 // );
 
+// permission plugin
+backend.add(import('@janus-idp/backstage-plugin-rbac-backend'));
+
 // search plugin
 backend.add(import('@backstage/plugin-search-backend/alpha'));
 
 // search engine
 // See https://backstage.io/docs/features/search/search-engines
 backend.add(import('@backstage/plugin-search-backend-module-pg/alpha'));
-
-// permission plugin
-backend.add(import('@janus-idp/backstage-plugin-rbac-backend'));
 
 // search collators
 backend.add(import('@backstage/plugin-search-backend-module-catalog/alpha'));
