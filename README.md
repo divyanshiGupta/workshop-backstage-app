@@ -63,7 +63,7 @@ export const yourPluginViewPermission = createPermission({
 Add `@backstage/plugin-permission-react` dependency in your common plugins `package.json`
 `yarn --cwd plugins/<your-plugin> add @backstage/plugin-permission-common`
 
-Add the following in you component to hide the component if the access is not allowed
+Add the following in your component to hide the component if the access is not allowed
 
 ```
 import { usePermission } from '@backstage/plugin-permission-react';
